@@ -1,1 +1,19 @@
+<mat-toolbar>
+  <mat-icon class="navbar-icons_button" style="margin-right: 10px"
+    >menu</mat-icon
+  >
+  <span (click)="router.navigate(['index'])" class="navbar-icons_button"
+    >Star Wars Wiki</span
+  >
+  <span class="example-spacer"></span>
+  <mat-icon (click)="router.navigate(['info'])" class="navbar-icons_button"
+    >favorite</mat-icon
+  >
+  <mat-icon
+    class="navbar-icons_button"
+    (click)="router.navigate(['share'])"
+    style="margin-left: 10px"
+    >share</mat-icon
+  >
+</mat-toolbar>
 <router-outlet></router-outlet>
