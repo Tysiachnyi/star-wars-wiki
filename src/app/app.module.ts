@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -11,6 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {ErrorPageComponent} from './pages/error-page/error-page.component';
 import {InfoPageComponent} from './pages/info-page/info-page.component';
 import {SharePageComponent} from './pages/share-page/share-page.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {SharePageComponent} from './pages/share-page/share-page.component';
     MatSliderModule,
     MatToolbarModule,
     MatIconModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

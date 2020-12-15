@@ -1,3 +1,10 @@
-<div>
-  <h1>Hi there</h1>
+<div style="margin-top: 50px; margin-left: 100px">
+  <form [formGroup]="starWarsForm" (ngSubmit)="onClickSave()">
+      <div formArrayName="hero">
+        <div *ngFor="let hero of hero.controls; let i = index">
+          <p>{{hero.value.name}}</p>
+          <p>{{hero.value.gender}}</p>
+        </div>
+      </div>
+  </form>
 </div>
