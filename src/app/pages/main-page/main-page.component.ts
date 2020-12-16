@@ -46,7 +46,7 @@ export class MainPageComponent implements OnInit {
   }
 
   get hero(): Partial<FormArray> {
-    return this.starWarsForm.get('hero');
+    return this.starWarsForm.get('hero') as FormArray;
   }
 
   onClickSave() {}

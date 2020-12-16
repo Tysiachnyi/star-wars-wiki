@@ -5,7 +5,7 @@
     (ngSubmit)="onClickSave()"
   >
     <div formArrayName="hero">
-      <div *ngFor="let hero of hero.controls; let i = index">
+      <div *ngFor="let hero of hero['controls']; let i = index">
         <div [formGroupName]="i">
           <textarea
             formControlName="description"
