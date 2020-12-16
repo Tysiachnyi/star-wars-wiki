@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {StarwarsService} from '../../services/starwars.service';
 
 @Component({
@@ -9,7 +15,6 @@ import {StarwarsService} from '../../services/starwars.service';
 })
 export class MainPageComponent implements OnInit {
   starWarsForm: FormGroup;
-  aboutMeDescription: string;
 
   constructor(
     private starwarsHttpService: StarwarsService,
@@ -18,35 +23,25 @@ export class MainPageComponent implements OnInit {
     this.starWarsForm = this.fb.group({
       hero: this.fb.array([]),
 
-      // // 1 Variant. It works.
+      // // 1 Variant. It works .  --- Bcs u hardcoded string
       // aboutMe: this.fb.group({
       //   description: ['Hardcoded initial value', [Validators.required]]
       // })
 
-      // // 2 Variant. It doesn't work.
+      // // 2 Variant. It doesn't work. --- Bcs this.aboutMeDescription is undefined, you get data later.
       // aboutMe: this.fb.group({
       //   description: [this.aboutMeDescription, [Validators.required]]
       // })
-
     });
   }
 
   ngOnInit(): void {
-    this.starwarsHttpService.getPeople().subscribe(item => {
-      // @ts-ignore
-      item.results.forEach(hero => {
-        this.hero.push(
-          this.fb.group({
-            name: [hero.name],
-            gender: [hero.gender],
-          })
-        );
-      });
-    });
-
     this.starwarsHttpService.getTextBlockData().subscribe(item => {
-      this.aboutMeDescription = item.textBlockDescription;
-      console.log(this.aboutMeDescription);
+      this.hero.push(
+        this.fb.group({
+          description: [item.textBlockDescription, [Validators.required]],
+        })
+      );
     });
   }
 
@@ -54,6 +49,5 @@ export class MainPageComponent implements OnInit {
     return this.starWarsForm.get('hero');
   }
 
-  onClickSave() {
-  }
+  onClickSave() {}
 }

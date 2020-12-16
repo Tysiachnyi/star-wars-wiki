@@ -1,14 +1,20 @@
 <div style="margin-top: 50px; margin-left: 100px">
-  <form style="display: flex; justify-content: space-around;" [formGroup]="starWarsForm" (ngSubmit)="onClickSave()">
-      <div formArrayName="hero">
-        <div *ngFor="let hero of hero.controls">
-          <p>{{hero.value.name}}</p>
-          <p>{{hero.value.gender}}</p>
+  <form
+    style="display: flex; justify-content: space-around"
+    [formGroup]="starWarsForm"
+    (ngSubmit)="onClickSave()"
+  >
+    <div formArrayName="hero">
+      <div *ngFor="let hero of hero.controls; let i = index">
+        <div [formGroupName]="i">
+          <textarea
+            formControlName="description"
+            rows="3"
+            class="form-control"
+            placeholder="Some info about you"
+          ></textarea>
         </div>
       </div>
-      <div formGroupName="aboutMe" class="admin-edit__form-group-section col-sm-9">
-          <textarea formControlName="description" rows="3" class="form-control"
-                    placeholder="Some info about you"></textarea>
-      </div>
+    </div>
   </form>
 </div>
