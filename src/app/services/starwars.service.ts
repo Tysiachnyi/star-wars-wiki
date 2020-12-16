@@ -9,9 +9,10 @@ export class StarwarsService {
   constructor(private http: HttpClient) { }
 
   getPeople() {
-    const url = 'https://swapi.dev/api/people/';
+    return this.http.get('https://swapi.dev/api/people/');
+  }
 
-    return this.http
-      .get(url);
+  getTextBlockData(): any {
+    return this.http.get('http://my-json-server.typicode.com/olehi94/db-placeholder/textBlockData');
   }
 }

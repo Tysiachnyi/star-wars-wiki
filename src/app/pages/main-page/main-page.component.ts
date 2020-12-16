@@ -9,12 +9,25 @@ import {StarwarsService} from '../../services/starwars.service';
 })
 export class MainPageComponent implements OnInit {
   starWarsForm: FormGroup;
+  aboutMeDescription: string;
+
   constructor(
     private starwarsHttpService: StarwarsService,
     private fb: FormBuilder
   ) {
     this.starWarsForm = this.fb.group({
       hero: this.fb.array([]),
+
+      // // 1 Variant. It works.
+      // aboutMe: this.fb.group({
+      //   description: ['Hardcoded initial value', [Validators.required]]
+      // })
+
+      // // 2 Variant. It doesn't work.
+      // aboutMe: this.fb.group({
+      //   description: [this.aboutMeDescription, [Validators.required]]
+      // })
+
     });
   }
 
@@ -24,11 +37,16 @@ export class MainPageComponent implements OnInit {
       item.results.forEach(hero => {
         this.hero.push(
           this.fb.group({
-            name: new FormControl(hero.name),
-            gender: new FormControl(hero.gender),
+            name: [hero.name],
+            gender: [hero.gender],
           })
         );
       });
+    });
+
+    this.starwarsHttpService.getTextBlockData().subscribe(item => {
+      this.aboutMeDescription = item.textBlockDescription;
+      console.log(this.aboutMeDescription);
     });
   }
 
